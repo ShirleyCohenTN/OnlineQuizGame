@@ -1,5 +1,5 @@
 //import { Axios } from "axios";
-import Axios, * as others from "axios";
+import Axios from "axios";
 
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
@@ -119,7 +119,10 @@ function App() {
   return questions.length > 0 ? (
     <div className="container">
       {currentIndex >= questions.length ? (
-        <h1>Game Ended, Your Final Score is {score}/{questions.length}</h1>
+        <div style={{textAlign:"center"}}>
+        <h1>Game Over! <br/> Your Final Score is {score}/{questions.length}</h1>
+        <img style={{width:"80%"}} src={require("./images/trophy.png")}/>
+        </div>
       ) : (
         <Questionnaire
           handleAnswer={handleAnswer}
@@ -130,6 +133,7 @@ function App() {
           data={questions[currentIndex]}
           score = {score}
           questions_length = {questions.length}
+          currentIndex = {currentIndex}
         />
       )}
     </div>
