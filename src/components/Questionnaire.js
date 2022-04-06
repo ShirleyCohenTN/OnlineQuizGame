@@ -13,7 +13,7 @@ function Questionnaire({
   handleAnswer,
   handleNextQuestion,
   showAnswers,
-  data: { question, correct_answer, answers },
+  data: { question, category, correct_answer, answers },
 }) {
   //console.log(timer)
 
@@ -23,6 +23,7 @@ function Questionnaire({
   }
   
   let question_number = currentIndex + 1;
+  let category_name = category.split(":").pop();
   return (
     <>
       <div className="top-base">
@@ -34,6 +35,7 @@ function Questionnaire({
       </div>
 
       <div className="questionClass">
+        <h2> <u>{category_name}</u></h2>
         <h1
           dangerouslySetInnerHTML={{
             __html: question_number + ". " + question,
@@ -42,14 +44,10 @@ function Questionnaire({
       </div>
       <div className="button-overall">
         {answers.map((answer, idx) => {
-          const specialClassName = showAnswers
-            ? answer === correct_answer
-              ? "green-button"
-              : "red-button"
-            : "";
+        
           return (
             <button
-              className={`normal-button ${specialClassName}`}
+              className={`normal-button`}
               onClick={() => handleAnswer(answer)}
               dangerouslySetInnerHTML={{ __html: answer }}
             />
@@ -57,9 +55,7 @@ function Questionnaire({
         })}
       </div>
 
-      {/* {showAnswers && (
-         <button onClick ={handleNextQuestion} className="next-question">Next Question</button>
-     )} */}
+  
     </>
   );
 }

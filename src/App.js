@@ -4,6 +4,7 @@ import Axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import Questionnaire from "./components/Questionnaire";
+import GameOver from "./components/GameOver";
 
 const API_URL = "https://opentdb.com/api.php?amount=100";
 
@@ -15,6 +16,7 @@ function App() {
   //useRef for dealing with javascript setInterval - tracking and stopping it
   const intervalRef = useRef(null);
   const [timer, setTimer] = useState('00:00:00');
+  const [startTheGame, setStartTheGame] = useState(false);
 
   //compute the difference between the target timer and the current time
  const getTimeRemaining = (endtime) =>{
@@ -22,16 +24,15 @@ function App() {
     const seconds = Math.floor( (total/1000) % 60);
     const minutes = Math.floor( (total/1000/60) % 60);
     const hours = Math.floor( (total/1000*60*60) % 24);
-    const days = Math.floor ( (total/ (1000*60*60*24)));
     return {
-      total, days, hours, minutes, seconds
+      total, hours, minutes, seconds
     };
   }
 
 
   //updates the timer and stops it when the time reach to zero
   const startTimer = (deadline) => {
-     let {total, days, hours, minutes, seconds} = getTimeRemaining(deadline);
+     let {total, hours, minutes, seconds} = getTimeRemaining(deadline);
      if(total>=0){
        //update the timer
        setTimer(
@@ -119,11 +120,17 @@ function App() {
   return questions.length > 0 ? (
     <div className="container">
       {currentIndex >= questions.length ? (
-        <div style={{textAlign:"center"}}>
-        <h1>Game Over! <br/> Your Final Score is {score}/{questions.length}</h1>
-        <img style={{width:"80%"}} src={require("./images/trophy.png")}/>
-        </div>
+        // <div style={{textAlign:"center"}}>
+        // <h1>Game Over! <br/> Your Final Score is {score}/{questions.length}</h1>
+        // <img style={{width:"80%"}} src={require("./images/trophy.png")}/>
+        // </div>
+        <GameOver
+        questions_length = {questions.length}
+        score = {score}
+
+        />
       ) : (
+        
         <Questionnaire
           handleAnswer={handleAnswer}
           handleNextQuestion={handleNextQuestion}
