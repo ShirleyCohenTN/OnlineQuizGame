@@ -13,11 +13,9 @@ function App() {
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
-  const [showAnswers, setShowAnswers] = useState(false);
   //useRef for dealing with javascript setInterval - tracking and stopping it
   const intervalRef = useRef(null);
   const [timer, setTimer] = useState('00:00:00');
-  const [startTheGame, setStartTheGame] = useState(false);
 
   //compute the difference between the target timer and the current time
  const getTimeRemaining = (endtime) =>{
@@ -101,20 +99,19 @@ function App() {
 
   const handleAnswer = (answer) => {
     //that the user won't be able to score multiple times in the same question:
-    if(!showAnswers){
+    
       if (answer === questions[currentIndex].correct_answer) {
         setScore(score + 1);
       }
 
-    }
 
-    setShowAnswers(true);
+    
     handleNextQuestion();
   };
 
   const handleNextQuestion = () => {
     setCurrentIndex(currentIndex + 1);
-    setShowAnswers(false);
+   
     resetTimer();
   };
 
@@ -131,7 +128,7 @@ function App() {
         <Questionnaire
           handleAnswer={handleAnswer}
           handleNextQuestion={handleNextQuestion}
-          showAnswers={showAnswers}
+          
           resetTimer = {resetTimer}
           timer = {timer}
           data={questions[currentIndex]}

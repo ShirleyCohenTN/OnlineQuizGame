@@ -9,11 +9,9 @@ function Questionnaire({
   questions_length,
   score,
   timer,
-  resetTimer,
   handleAnswer,
   handleNextQuestion,
-  showAnswers,
-  data: { question, category, correct_answer, answers },
+  data: { question, category, answers },
 }) {
   //console.log(timer)
 

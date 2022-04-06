@@ -1,20 +1,11 @@
 import React from "react";
 import CircularProgress from "./CircularProgress";
-// import { Button } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
-
-//import 'bootstrap/dist/css/bootstrap.min.css';
-
-
-
 
 function GameOver({ score, questions_length }) {
 
   function percentage(correct_answers, total_questions) {
     return (100 * correct_answers) / total_questions;
   }
-
-
 
   function feedback() {
     if (percentage(score, questions_length) >= 80) {
