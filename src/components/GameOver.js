@@ -1,5 +1,10 @@
 import React from "react";
 import CircularProgress from "./CircularProgress";
+// import { Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+
+//import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 
@@ -8,6 +13,8 @@ function GameOver({ score, questions_length }) {
   function percentage(correct_answers, total_questions) {
     return (100 * correct_answers) / total_questions;
   }
+
+
 
   function feedback() {
     if (percentage(score, questions_length) >= 80) {
@@ -36,14 +43,16 @@ function GameOver({ score, questions_length }) {
         color="green"
       />
 
-    <div>
+    <div style={{marginBottom:"1%"}}>
       <h2>{score} of {questions_length} questions answered correctly</h2>
       <h2 className="text-style"> {feedback()}</h2>
     </div>
 
+<button className="button-22" onClick={() => window.location.reload()}>RETRY QUIZ</button>
 
     </>
   );
 }
 
 export default GameOver;
+

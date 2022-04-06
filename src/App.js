@@ -6,6 +6,7 @@ import "./App.css";
 import Questionnaire from "./components/Questionnaire";
 import GameOver from "./components/GameOver";
 
+
 const API_URL = "https://opentdb.com/api.php?amount=100";
 
 function App() {
@@ -120,10 +121,6 @@ function App() {
   return questions.length > 0 ? (
     <div className="container">
       {currentIndex >= questions.length ? (
-        // <div style={{textAlign:"center"}}>
-        // <h1>Game Over! <br/> Your Final Score is {score}/{questions.length}</h1>
-        // <img style={{width:"80%"}} src={require("./images/trophy.png")}/>
-        // </div>
         <GameOver
         questions_length = {questions.length}
         score = {score}
@@ -145,7 +142,7 @@ function App() {
       )}
     </div>
   ) : (
-    <div className="container">Loading...</div>
+     <div className="container">Loading...</div>
   );
 }
 
